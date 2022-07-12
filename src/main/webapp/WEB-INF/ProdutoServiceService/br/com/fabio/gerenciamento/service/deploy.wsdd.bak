@@ -1,0 +1,44 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ProdutoServiceService WSDL service -->
+
+  <service name="ProdutoService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.gerenciamento.fabio.com.br"/>
+      <parameter name="wsdlServiceElement" value="ProdutoServiceService"/>
+      <parameter name="schemaQualified" value="http://model.gerenciamento.fabio.com.br,http://service.gerenciamento.fabio.com.br"/>
+      <parameter name="wsdlServicePort" value="ProdutoService"/>
+      <parameter name="className" value="br.com.fabio.gerenciamento.service.ProdutoServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ProdutoService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="insertProduto" qname="operNS:insertProduto" xmlns:operNS="http://service.gerenciamento.fabio.com.br" soapAction="" >
+        <parameter qname="pns:produto" xmlns:pns="http://service.gerenciamento.fabio.com.br" type="tns:Produto" xmlns:tns="http://model.gerenciamento.fabio.com.br"/>
+      </operation>
+      <operation name="bucaProdutoPorId" qname="operNS:bucaProdutoPorId" xmlns:operNS="http://service.gerenciamento.fabio.com.br" returnQName="retNS:bucaProdutoPorIdReturn" xmlns:retNS="http://service.gerenciamento.fabio.com.br" returnType="rtns:Produto" xmlns:rtns="http://model.gerenciamento.fabio.com.br" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service.gerenciamento.fabio.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="retornaNome" qname="operNS:retornaNome" xmlns:operNS="http://service.gerenciamento.fabio.com.br" returnQName="retNS:retornaNomeReturn" xmlns:retNS="http://service.gerenciamento.fabio.com.br" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="buscaTodosProdutos" qname="operNS:buscaTodosProdutos" xmlns:operNS="http://service.gerenciamento.fabio.com.br" returnQName="retNS:buscaTodosProdutosReturn" xmlns:retNS="http://service.gerenciamento.fabio.com.br" returnType="rtns:Produto" xmlns:rtns="http://model.gerenciamento.fabio.com.br" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="insertProduto buscaTodosProdutos retornaNome bucaProdutoPorId"/>
+
+      <typeMapping
+        xmlns:ns="http://model.gerenciamento.fabio.com.br"
+        qname="ns:Produto"
+        type="java:br.com.fabio.gerenciamento.model.Produto"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

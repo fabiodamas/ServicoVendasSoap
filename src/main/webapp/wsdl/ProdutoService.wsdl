@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.gerenciamento.fabio.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.gerenciamento.fabio.com.br" xmlns:intf="http://service.gerenciamento.fabio.com.br" xmlns:tns1="http://model.gerenciamento.fabio.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.gerenciamento.fabio.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.gerenciamento.fabio.com.br"/>
+   <element name="insertProduto">
+    <complexType>
+     <sequence>
+      <element name="produto" type="tns1:Produto"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertProdutoResponse">
+    <complexType/>
+   </element>
+   <element name="bucaProdutoPorId">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="bucaProdutoPorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="bucaProdutoPorIdReturn" type="tns1:Produto"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retornaNome">
+    <complexType/>
+   </element>
+   <element name="retornaNomeResponse">
+    <complexType>
+     <sequence>
+      <element name="retornaNomeReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscaTodosProdutos">
+    <complexType/>
+   </element>
+   <element name="buscaTodosProdutosResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="buscaTodosProdutosReturn" type="tns1:Produto"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.gerenciamento.fabio.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Produto">
+    <sequence>
+     <element name="descricao" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="nomeproduto" nillable="true" type="xsd:string"/>
+     <element name="precoUnitario" nillable="true" type="xsd:decimal"/>
+     <element name="quantidade" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="insertProdutoRequest">
+
+      <wsdl:part element="impl:insertProduto" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscaTodosProdutosRequest">
+
+      <wsdl:part element="impl:buscaTodosProdutos" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="bucaProdutoPorIdResponse">
+
+      <wsdl:part element="impl:bucaProdutoPorIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="bucaProdutoPorIdRequest">
+
+      <wsdl:part element="impl:bucaProdutoPorId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retornaNomeResponse">
+
+      <wsdl:part element="impl:retornaNomeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertProdutoResponse">
+
+      <wsdl:part element="impl:insertProdutoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retornaNomeRequest">
+
+      <wsdl:part element="impl:retornaNome" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscaTodosProdutosResponse">
+
+      <wsdl:part element="impl:buscaTodosProdutosResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ProdutoService">
+
+      <wsdl:operation name="insertProduto">
+
+         <wsdl:input message="impl:insertProdutoRequest" name="insertProdutoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insertProdutoResponse" name="insertProdutoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bucaProdutoPorId">
+
+         <wsdl:input message="impl:bucaProdutoPorIdRequest" name="bucaProdutoPorIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:bucaProdutoPorIdResponse" name="bucaProdutoPorIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retornaNome">
+
+         <wsdl:input message="impl:retornaNomeRequest" name="retornaNomeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:retornaNomeResponse" name="retornaNomeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscaTodosProdutos">
+
+         <wsdl:input message="impl:buscaTodosProdutosRequest" name="buscaTodosProdutosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscaTodosProdutosResponse" name="buscaTodosProdutosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ProdutoServiceSoapBinding" type="impl:ProdutoService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="insertProduto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertProdutoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertProdutoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="bucaProdutoPorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="bucaProdutoPorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="bucaProdutoPorIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retornaNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retornaNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retornaNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscaTodosProdutos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscaTodosProdutosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscaTodosProdutosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ProdutoServiceService">
+
+      <wsdl:port binding="impl:ProdutoServiceSoapBinding" name="ProdutoService">
+
+         <wsdlsoap:address location="http://localhost:8080/ServicoVendas/services/ProdutoService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
